@@ -21,15 +21,22 @@ public class Main {
             deg[i] = Integer.parseInt(st.nextToken());
         }
 
+        // 초기 부분합 계산
+        for (int i = 1; i <= k; i++) {
+            prefix_sum[1] += deg[i];
+        }
+
+        // 이전 부분합을 사용하여 현재 부분합 계산
+        for (int i = 2; i <= n - k + 1; i++) {
+            prefix_sum[i] = prefix_sum[i - 1] - deg[i - 1] + deg[i + k - 1];
+        }
+
+        // 최대값 찾기
         for (int i = 1; i <= n - k + 1; i++) {
-            for (int j = i; j < i + k; j++) {
-                prefix_sum[i] += deg[j];
-            }
-            if(prefix_sum[i]>=max)
+            if (prefix_sum[i] >= max)
                 max = prefix_sum[i];
         }
 
         System.out.println(max);
-
     }
 }
