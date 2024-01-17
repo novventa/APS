@@ -1,40 +1,44 @@
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.StringTokenizer;
 
 public class Main {
-    static int N, X, ans;
-    static int[] arr;
-
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        N = Integer.parseInt(br.readLine());
-        arr = new int[N];
-        HashSet<Integer> set = new HashSet<>();
+
+        int n = Integer.parseInt(br.readLine());
+
+        int[] arr = new int[n];
+
         StringTokenizer st = new StringTokenizer(br.readLine());
-        for(int i=0; i<N; i++) {
+
+        for (int i = 0; i < n; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
-        X = Integer.parseInt(br.readLine());
+
+        int x = Integer.parseInt(br.readLine());
 
         Arrays.sort(arr);
 
-        int left=0, right = N-1;
-        while(left < right) {
-            int sum = arr[left]+arr[right];
-            if(sum == X) {    // 같다면 count
-                ans++;
-                left++;
-                right--;
-            }else if(sum > X) {    // 더 크다면
-                right--;
-            }else {    // 더 작다면
-                left++;
-            }
+        int s = 0;
+        int e = n - 1;
+        int cnt = 0;
+
+        while (s < e) {
+            int sum = arr[s] + arr[e];
+            if (sum == x) {
+                cnt++;
+                s++;
+                e--;
+            } else if (sum < x) {
+                s++;
+            } else
+                e--;
         }
 
-        System.out.println(ans);
+        System.out.println(cnt);
+
     }
 }
