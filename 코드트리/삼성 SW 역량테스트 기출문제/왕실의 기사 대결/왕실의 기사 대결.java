@@ -272,7 +272,7 @@ public class Main {
             // 체스판에서 사라진 기사에게 명령을 내리면 아무 반응이 없다.
             if (!knights[i].inBoard) {
                 continue;
-            }git
+            }
 
             process(i, d);
             initIsDamaged();
