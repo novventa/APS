@@ -12,6 +12,7 @@ public class Main {
         for (int i = 2; i < n - 1; i += 2) {
             s += (n - i - 2) / 2;
         }
+        
         System.out.println(s);
 
     }
